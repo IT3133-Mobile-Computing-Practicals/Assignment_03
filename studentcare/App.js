@@ -15,8 +15,8 @@ const Dashboard = () => (
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={LoginPage} />
+      <Stack.Navigator initialRouteName="UoV Student Care">
+        <Stack.Screen name="UoV Student Care" component={LoginPage} />
         <Stack.Screen name="Dashboard" component={Dashboard} />
       </Stack.Navigator>
     </NavigationContainer>

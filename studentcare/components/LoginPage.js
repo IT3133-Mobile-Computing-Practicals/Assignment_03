@@ -1,6 +1,8 @@
-import  {React, useState } from 'react';
-import { View, Text, Button, TextInput, Image, StyleSheet } from 'react-native';
+import {React,useState } from 'react';
+import { View, Text, Button, TextInput, Image, StyleSheet, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+
+const { width, height } = Dimensions.get('window'); // Get screen width and height
 
 const LoginPage = () => {
   const navigation = useNavigation();
@@ -21,7 +23,11 @@ const LoginPage = () => {
   return (
     <View style={styles.container}>
       {/* Logo */}
-      <Image source={require('../assets/uovlogo.png')} style={styles.logo} />
+      <Image
+        source={require('../assets/uovlogo.png')}
+        style={styles.logo}
+        resizeMode="contain" // Ensure the image fits within the screen while maintaining aspect ratio
+      />
 
       {/* Title */}
       <Text style={styles.title}>STUDENT LOGIN</Text>
@@ -57,8 +63,8 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   logo: {
-    width: 150,
-    height: 150,
+    width: width * 0.8,  
+    height: height * 0.25, 
     marginBottom: 20,
   },
   title: {
