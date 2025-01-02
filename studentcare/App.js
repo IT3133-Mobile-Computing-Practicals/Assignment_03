@@ -16,8 +16,10 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="UoV Student Care">
-        <Stack.Screen name="UoV Student Care" component={LoginPage} />
-        <Stack.Screen name="Dashboard" component={Dashboard} />
+        <Stack.Screen name="UoV Student Care" component={LoginPage} options={{
+            headerShown: false, // Hide the header for this screen
+          }}/>
+        <Stack.Screen name="Dashboard" component={Dashboard}  />
       </Stack.Navigator>
     </NavigationContainer>
   );
