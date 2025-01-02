@@ -3,12 +3,13 @@ import { View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginPage from "./components/LoginPage";
+import Dashboardpage from "./components/DashboardPage";
 
 const Stack = createNativeStackNavigator();
 
 const Dashboard = () => (
   <View>
-    <Text>Dashboard Screen</Text>
+    <Dashboardpage />
   </View>
 );
 
