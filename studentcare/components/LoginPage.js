@@ -1,40 +1,80 @@
-import React from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import  {React, useState } from 'react';
+import { View, Text, Button, TextInput, Image, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-export default function LoginPage({ navigation }) {
+const LoginPage = () => {
+  const navigation = useNavigation();
+
+  // State to hold the username and password
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
   const handleLogin = () => {
-    // Add login logic here
-    navigation.navigate('Home'); // Navigate back to Home after login (if needed)
+    // Implement your login logic here, like validation or authentication
+    if (username && password) {
+      navigation.navigate('Dashboard');
+    } else {
+      alert('Please enter both username and password');
+    }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login Page</Text>
-      <TextInput placeholder="Username" style={styles.input} />
-      <TextInput placeholder="Password" style={styles.input} secureTextEntry />
+      {/* Logo */}
+      <Image source={require('../assets/uovlogo.png')} style={styles.logo} />
+
+      {/* Title */}
+      <Text style={styles.title}>STUDENT LOGIN</Text>
+
+      {/* Username Input */}
+      <TextInput
+        style={styles.input}
+        placeholder="Username"
+        value={username}
+        onChangeText={setUsername}
+      />
+
+      {/* Password Input */}
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        secureTextEntry
+        value={password}
+        onChangeText={setPassword}
+      />
+
+      {/* Login Button */}
       <Button title="Login" onPress={handleLogin} />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
     padding: 16,
+  },
+  logo: {
+    width: 150,
+    height: 150,
+    marginBottom: 20,
   },
   title: {
     fontSize: 24,
+    fontWeight: 'bold',
     marginBottom: 20,
   },
   input: {
     width: '80%',
     height: 40,
-    borderColor: 'gray',
+    borderColor: '#ccc',
     borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 8,
-    borderRadius: 5,
+    borderRadius: 8,
+    paddingLeft: 10,
+    marginBottom: 12,
   },
 });
+
+export default LoginPage;
