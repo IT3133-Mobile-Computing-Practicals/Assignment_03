@@ -63,6 +63,10 @@ const LoginPage = () => {
 
       {/* Login Button */}
       <Button title="Login" onPress={handleLogin} />
+
+      <View style={styles.footerContainer}>
+      
+    </View>
     </View>
   );
 };
@@ -97,6 +101,15 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingLeft: 10,
     marginBottom: 12,
+  },
+  footerContainer: {
+    position: 'absolute', // Ensures the footer stays fixed
+    bottom: 0, // Positions the footer at the bottom of the screen
+    width: width,
+    height: 50, // Normal height for a footer
+    backgroundColor: 'purple',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
