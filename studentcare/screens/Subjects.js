@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native';
-import { subjects, marks } from '../database/StudentDb'; // Ensure this file exists and exports subjects and marks
+import { subjects, marks, courses } from '../database/StudentDb'; // Ensure this file exists and exports subjects and marks
 
 const { width } = Dimensions.get('window');
 
 const SubjectTab = ({ route }) => {
   const { userId } = route.params; // Get userId from route params
+
+  const course = courses.find(course => course.id === userId);
 
   // Get the subjects and marks associated with the userId
   const userMarks = marks.filter(mark => mark.student_id === userId);
@@ -30,7 +32,7 @@ const SubjectTab = ({ route }) => {
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       {/* Course Name and Summary */}
-      <Text style={styles.courseName}>Subjects</Text>
+      <Text style={styles.courseName}>{course.name}</Text>
       <View style={styles.row}>
         <Text style={styles.text}>({subjectCount}) Subjects</Text>
         <Text style={styles.text}> | Average: {averageMarks}</Text>
