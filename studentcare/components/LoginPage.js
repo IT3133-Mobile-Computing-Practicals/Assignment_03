@@ -79,13 +79,14 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     padding: 16,
   },
   logo: {
     width: width * 0.8,  
     height: height * 0.25, 
+    marginTop: 20,
     marginBottom: 20,
   },
   title: {
