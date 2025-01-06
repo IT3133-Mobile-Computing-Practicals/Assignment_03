@@ -1,33 +1,61 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
-import { students } from '../database/StudentDb'; // Ensure this file exists and exports an array of students
+import { View, Text, Image, StyleSheet, ScrollView, Dimensions} from 'react-native';
+import { courses } from '../database/StudentDb'; // Ensure this file exists and exports an array of courses
 
-const Course = () => {
+const { width, height } = Dimensions.get('window');
+
+const CourseTab = ({ route }) => {
+  const { userId } = route.params; // Get userId from route params
+
+  // Find the course associated with the userId (assuming course_id links to courses)
+  const course = courses.find(course => course.id === userId);
+
+  // Handle case where course is not found
+  if (!course) {
+    return (
+      <View style={styles.errorContainer}>
+        <Text style={styles.errorText}>Course not found!</Text>
+      </View>
+    );
+  }
+
   return (
-    <View>
-        <Text style={styles.title}>Course Profile</Text>
-    </View>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      {/* Course Name */}
+      <Image
+        source={require('../assets/uovlogo.png')}
+        style={styles.logo}
+        resizeMode="contain" // Ensure the image fits within the screen while maintaining aspect ratio
+      />
+      <Text style={styles.courseName}>{course.name}</Text>
+
+      {/* Code and Department */}
+      <View style={styles.row}>
+        <Text style={styles.text}>Code: {course.course_code}</Text>
+        <Text style={styles.text}> | Dept: {course.department}</Text>
+      </View>
+
+      {/* Course Information */}
+      <Text style={styles.sectionTitle}>Course Information</Text>
+      <Text style={styles.text}>Code: {course.course_code}</Text>
+      <Text style={styles.text}>Department: {course.department}</Text>
+      <Text style={styles.text}>Duration: {course.duration}</Text>
+      <Text style={styles.text}>Description: {course.description}</Text>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   scrollContainer: {
-    flexGrow: 1, // Ensures content takes enough space for scrolling
+    flexGrow: 1,
     padding: 20,
     backgroundColor: '#f9f9f9',
   },
-  profilePic: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    alignSelf: 'center',
-    marginBottom: 20,
-  },
-  name: {
-    fontSize: 24,
+  courseName: {
+    fontSize: 28,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 10,
+    marginBottom: 20,
   },
   row: {
     flexDirection: 'row',
@@ -39,7 +67,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
     marginVertical: 10,
   },
@@ -52,6 +80,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'red',
   },
+  logo: {
+    width: width * 0.8,  
+    height: height * 0.25, 
+    marginBottom: 20,
+  },
 });
 
-export default Course;
+export default CourseTab;
