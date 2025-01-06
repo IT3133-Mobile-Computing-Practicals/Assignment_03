@@ -2,18 +2,20 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import { students } from '../database/StudentDb'; // Ensure this file exists and exports an array of students
 
-const ProfileTab = () => {
-  // Check if `students` exists and has data
-  if (!students || students.length === 0) {
+const ProfileTab = ({ route }) => {
+  const { userId } = route.params; // Get userId from route params
+
+  // Find the student by userId
+  const student = students.find(student => student.id === userId);
+
+  // Handle case where student is not found
+  if (!student) {
     return (
       <View style={styles.errorContainer}>
-        <Text style={styles.errorText}>No student data found!</Text>
+        <Text style={styles.errorText}>Student not found!</Text>
       </View>
     );
   }
-
-  // Assuming we load the first student for demonstration
-  const student = students[0];
 
   return (
     <ScrollView
