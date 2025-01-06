@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import { subjects, marks, courses } from '../database/StudentDb'; // Ensure this file exists and exports subjects and marks
 
+import Footer from '../components/Footer';
+
 const { width } = Dimensions.get('window');
 
 const SubjectTab = ({ route }) => {
@@ -34,7 +36,7 @@ const SubjectTab = ({ route }) => {
       {/* Course Name and Summary */}
       <Text style={styles.courseName}>{course.name}</Text>
       <View style={styles.row}>
-        <Text style={styles.text}>({subjectCount}) Subjects</Text>
+        <Text style={styles.text}>{subjectCount} Subjects</Text>
         <Text style={styles.text}> | Average: {averageMarks}</Text>
       </View>
 
@@ -50,6 +52,7 @@ const SubjectTab = ({ route }) => {
           <Text style={styles.tableCell}>{subject.marks}</Text>
         </View>
       ))}
+        <Footer/>
     </ScrollView>
   );
 };

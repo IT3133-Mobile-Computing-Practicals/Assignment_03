@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView, Dimensions} from 'react-native';
 import { courses } from '../database/StudentDb'; // Ensure this file exists and exports an array of courses
 
+import Footer from '../components/Footer';
 const { width, height } = Dimensions.get('window');
 
 const CourseTab = ({ route }) => {
@@ -41,6 +42,11 @@ const CourseTab = ({ route }) => {
       <Text style={styles.text}>Department: {course.department}</Text>
       <Text style={styles.text}>Duration: {course.duration}</Text>
       <Text style={styles.text}>Description: {course.description}</Text>
+
+     
+          <Footer/>
+      
+
     </ScrollView>
   );
 };

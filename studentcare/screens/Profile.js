@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView,Dimensions } from 'react-native';
 import { students } from '../database/StudentDb'; // Ensure this file exists and exports an array of students
 
+import Footer from '../components/Footer';
+
 const { width, height } = Dimensions.get('window');
 const ProfileTab = ({ route }) => {
   const { userId } = route.params; // Get userId from route params
@@ -52,6 +54,8 @@ const ProfileTab = ({ route }) => {
       <Text style={styles.text}>Gender: {student.gender}</Text>
       <Text style={styles.text}>Age: {student.age}</Text>
       <Text style={styles.text}>Blood Group: {student.blood_group}</Text>
+
+      <Footer/>
     </ScrollView>
   );
 };
