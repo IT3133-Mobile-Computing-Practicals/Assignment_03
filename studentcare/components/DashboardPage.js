@@ -1,54 +1,61 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 
-// Dummy screens for Profile, Course, and Subject
-const Profile = () => (
-  <View style={styles.screenContainer}>
-    <Text style={styles.screenText}>Profile Screen</Text>
-  </View>
-);
+// Import screens
+import ProfileTab from '../screens/Profile';
+import CourseTab from '../screens/Course';
+import SubjectTab from '../screens/Subjects';
 
-const Course = () => (
-  <View style={styles.screenContainer}>
-    <Text style={styles.screenText}>Course Screen</Text>
-  </View>
-);
-
-const Subject = () => (
-  <View style={styles.screenContainer}>
-    <Text style={styles.screenText}>Subject Screen</Text>
-  </View>
-);
-
+const { width, height } = Dimensions.get('window');
 const Tab = createBottomTabNavigator();
 
 const DashboardPage = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Profile"
       screenOptions={{
-        tabBarActiveTintColor: 'purple', // Active tab color
-        tabBarInactiveTintColor: 'gray', // Inactive tab color
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: '#ffffff',
+          borderTopWidth: 0.5,
+          borderTopColor: '#ccc',
+          paddingBottom: 5,
+          height: 60,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+        },
       }}
     >
-      <Tab.Screen name="Profile" component={Profile} />
-      <Tab.Screen name="Course" component={Course} />
-      <Tab.Screen name="Subject" component={Subject} />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileTab}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Text style={{ color: focused ? '#007AFF' : '#aaa' }}>👤</Text>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Course"
+        component={CourseTab}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Text style={{ color: focused ? '#007AFF' : '#aaa' }}>📚</Text>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Subject"
+        component={SubjectTab}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Text style={{ color: focused ? '#007AFF' : '#aaa' }}>📖</Text>
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };
-
-const styles = StyleSheet.create({
-  screenContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  screenText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-});
 
 export default DashboardPage;

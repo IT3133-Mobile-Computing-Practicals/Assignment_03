@@ -56,6 +56,11 @@ const LoginPage = () => {
 };
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1, // Ensures content takes enough space for scrolling
+    padding: 20,
+    backgroundColor: '#f9f9f9',
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
