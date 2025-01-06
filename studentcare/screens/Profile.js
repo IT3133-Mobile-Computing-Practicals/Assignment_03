@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView,Dimensions } from 'react-native';
 import { students } from '../database/StudentDb'; // Ensure this file exists and exports an array of students
 
+const { width, height } = Dimensions.get('window');
 const ProfileTab = ({ route }) => {
   const { userId } = route.params; // Get userId from route params
 
@@ -22,6 +23,12 @@ const ProfileTab = ({ route }) => {
       contentContainerStyle={styles.scrollContainer}
       nestedScrollEnabled={true} // Ensures proper scrolling in nested ScrollView
     >
+      <Image
+        source={require('../assets/uovlogo.png')}
+        style={styles.logo}
+        resizeMode="contain" // Ensure the image fits within the screen while maintaining aspect ratio
+      />
+
       {/* Profile Picture */}
       <Image source={student.profile_pic} style={styles.profilePic} />
 
@@ -90,6 +97,11 @@ const styles = StyleSheet.create({
   errorText: {
     fontSize: 18,
     color: 'red',
+  },
+  logo: {
+    width: width * 0.8,  
+    height: height * 0.25, 
+    marginBottom: 20,
   },
 });
 

@@ -34,8 +34,19 @@ export default function App() {
         <Stack.Screen
           name="Dashboard"
           component={DashboardPage}
-          options={{
-            headerShown: true, // Hide header for the tab navigation
+           options={{
+            title:'UoV Student Care',
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "purple",
+            },
+            headerTitleStyle: {
+              color: "white",
+              fontSize: 24,
+              fontWeight: "bold",
+            },
+            headerTitleAlign: "center",
+            headerTintColor: "white",
           }}
         />
 
