@@ -3,6 +3,7 @@ import { View, Text, Button, TextInput, Image, StyleSheet, Dimensions } from 're
 import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window'); // Get screen width and height
+import { students } from '../database/StudentDb';
 
 const LoginPage = () => {
   const navigation = useNavigation();
@@ -12,11 +13,22 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    // Implement your login logic here, like validation or authentication
-    if (username && password) {
-      navigation.navigate('Dashboard');
-    } else {
+    if (!username || !password) {
       alert('Please enter both username and password');
+      return;
+    }
+  
+    // Check if username and password match any record in the students database
+    const user = students.find(
+      student => student.username === username && student.password === password
+    );
+  
+    if (user) {
+      // Navigate to the dashboard if the user is found
+      navigation.navigate('Dashboard', { userId: user.id });
+    } else {
+      // Show an error message if credentials are incorrect
+      alert('Invalid username or password');
     }
   };
 
