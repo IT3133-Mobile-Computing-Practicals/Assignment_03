@@ -55,6 +55,7 @@ const ProfileTab = ({ route }) => {
       <Text style={styles.text}>Age: {student.age}</Text>
       <Text style={styles.text}>Blood Group: {student.blood_group}</Text>
 
+
       <Footer/>
     </ScrollView>
   );
